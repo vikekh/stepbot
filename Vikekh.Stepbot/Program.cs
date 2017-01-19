@@ -7,7 +7,7 @@ namespace Vikekh.Stepbot
 {
     public class Program
     {
-        private const string Version = "0.1.1";
+        private const string Version = "0.2.0";
 
         private SlackSocketClient Client { get; set; }
 
