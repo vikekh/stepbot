@@ -13,7 +13,7 @@ namespace Vikekh.Stepbot
 			var name = "@stepbot";
 			var age = (DateTime.Now - new DateTime(2017, 1, 18)).Days / 365.0;
 			var ageString = age.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture);
-			var version = "0.1.0";
+			var version = "0.1.1";
 			var mommy = "@vem";
 			var helloFormat = "hello w0rld my name is {0} I am {1} years old and my version is {2} and my mommy is {3}";
 			var hello = string.Format(helloFormat, name, ageString, version, mommy).ToLower().Replace("stepbot", "stepdot");
