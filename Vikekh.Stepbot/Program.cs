@@ -11,6 +11,8 @@ namespace Vikekh.Stepbot
 
         private ManualResetEventSlim ManualResetEventSlim { get; set; }
 
+        private Modules.WhereIs.WhereIs WhereIs { get; set; }
+
         public Program()
         {
             var botAuthToken = ConfigurationManager.AppSettings["BotAuthToken"];
@@ -62,6 +64,16 @@ namespace Vikekh.Stepbot
             if (route.ToLower().StartsWith("hello"))
             {
                 text = "Hej på dig!";
+            }
+
+            if (route.ToLower().StartsWith("whereis"))
+            {
+                if (WhereIs == null)
+                {
+                    WhereIs = new Modules.WhereIs.WhereIs();
+                }
+
+                text = WhereIs.Exec(route.Substring("whereis".Length).Trim());
             }
 
             return text;
