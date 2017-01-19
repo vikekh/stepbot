@@ -1,45 +1,89 @@
 ﻿using SlackAPI;
 using System;
+using System.Configuration;
 using System.Threading;
 
 namespace Vikekh.Stepbot
 {
-	class Program
+    public class Program
     {
-        static void Main(string[] args)
-        {
-			var botAuthToken = "";
-			var userAuthToken = "";
-			var name = "@stepbot";
-			var age = (DateTime.Now - new DateTime(2017, 1, 18)).Days / 365.0;
-			var ageString = age.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture);
-			var version = "0.1.1";
-			var mommy = "@vem";
-			var helloFormat = "hello w0rld my name is {0} I am {1} years old and my version is {2} and my mommy is {3}";
-			var hello = string.Format(helloFormat, name, ageString, version, mommy).ToLower().Replace("stepbot", "stepdot");
-			ManualResetEventSlim clientReady = new ManualResetEventSlim(false);
-			SlackSocketClient client = new SlackSocketClient(botAuthToken);
-			client.Connect((connected) =>
-			{
-				// This is called once the client has emitted the RTM start command
-				clientReady.Set();
-			}, () =>
-			{
-				// This is called once the RTM client has connected to the end point
-			});
-			client.OnMessageReceived += (message) =>
-			{
-				// Handle each message as you receive them
-				if (!message.text.Contains(client.MySelf.id))
-				{
-					return;
-				}
+        private const string Version = "0.1.1";
 
-				Console.WriteLine(message.text);
-				client.SendMessage((x) => { }, message.channel, hello);
-			};
-			clientReady.Wait();
-			Console.ReadLine();
-		}
+        private SlackSocketClient Client { get; set; }
+
+        private ManualResetEventSlim ManualResetEventSlim { get; set; }
+
+        private Modules.WhereIs.WhereIs WhereIs { get; set; }
+
+        public Program()
+        {
+            var botAuthToken = ConfigurationManager.AppSettings["BotAuthToken"];
+            ManualResetEventSlim = new ManualResetEventSlim(false);
+            Client = new SlackSocketClient(botAuthToken);
+        }
+
+        public static void Main(string[] args)
+        {
+            var program = new Program();
+
+            program.Client.Connect((loginResponse) =>
+            {
+                // This is called once the client has emitted the RTM start command
+                program.ManualResetEventSlim.Set();
+            }, () =>
+            {
+                // This is called once the RTM client has connected to the end point
+            });
+
+            program.Client.OnMessageReceived += (newMessage) =>
+            {
+                // Handle each message as you receive them
+                var text = newMessage.text.Trim();
+                var id = string.Format("<@{0}>", program.Client.MySelf.id);
+
+                if (!text.StartsWith(id))
+                {
+                    return;
+                }
+
+                Console.WriteLine("{0}: {1}", newMessage.user, newMessage.text);
+                var textData = program.Route(text.Substring(id.Length).Trim(), newMessage.user);
+
+                if (textData != null)
+                {
+                    program.Client.SendMessage((messageReceived) => { }, newMessage.channel, textData);
+                }
+            };
+
+            program.ManualResetEventSlim.Wait();
+            Console.ReadLine();
+        }
+
+        private string Route(string route, string user)
+        {
+            string text = null;
+
+            if (route.ToLower().StartsWith("hello"))
+            {
+                text = "Hej på dig!";
+            }
+
+            if (route.ToLower().StartsWith("whereis"))
+            {
+                if (WhereIs == null)
+                {
+                    WhereIs = new Modules.WhereIs.WhereIs();
+                }
+
+                text = WhereIs.Exec(route.Substring("whereis".Length).Trim(), user);
+            }
+
+            if (route.ToLower().StartsWith("version"))
+            {
+                text = string.Format("Stepbot v{0} https://github.com/vikekh/stepbot", Version);
+            }
+
+            return text;
+        }
     }
 }
