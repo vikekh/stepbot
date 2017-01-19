@@ -11,8 +11,8 @@ namespace Vikekh.Stepbot
 			var botAuthToken = "";
 			var userAuthToken = "";
 			var name = "@stepdot";
-			var age = (new DateTime(2017, 1, 18) - DateTime.Now).Days / 365.0;
-			var ageString = age.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+			var age = (DateTime.Now - new DateTime(2017, 1, 18)).Days / 365.0;
+			var ageString = age.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture);
 			var version = "0.1.0";
 			var mommy = "@vem";
 			ManualResetEventSlim clientReady = new ManualResetEventSlim(false);
