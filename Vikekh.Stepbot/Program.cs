@@ -45,7 +45,7 @@ namespace Vikekh.Stepbot
                 }
 
                 Console.WriteLine("{0}: {1}", newMessage.user, newMessage.text);
-                var textData = program.Route(text.Substring(id.Length).Trim());
+                var textData = program.Route(text.Substring(id.Length).Trim(), newMessage.user);
 
                 if (textData != null)
                 {
@@ -57,7 +57,7 @@ namespace Vikekh.Stepbot
             Console.ReadLine();
         }
 
-        private string Route(string route)
+        private string Route(string route, string user)
         {
             string text = null;
 
@@ -73,7 +73,7 @@ namespace Vikekh.Stepbot
                     WhereIs = new Modules.WhereIs.WhereIs();
                 }
 
-                text = WhereIs.Exec(route.Substring("whereis".Length).Trim());
+                text = WhereIs.Exec(route.Substring("whereis".Length).Trim(), user);
             }
 
             return text;
