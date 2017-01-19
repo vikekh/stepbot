@@ -7,6 +7,8 @@ namespace Vikekh.Stepbot
 {
     public class Program
     {
+        private const string Version = "0.1.1";
+
         private SlackSocketClient Client { get; set; }
 
         private ManualResetEventSlim ManualResetEventSlim { get; set; }
@@ -74,6 +76,11 @@ namespace Vikekh.Stepbot
                 }
 
                 text = WhereIs.Exec(route.Substring("whereis".Length).Trim(), user);
+            }
+
+            if (route.ToLower().StartsWith("version"))
+            {
+                text = string.Format("Stepbot v{0} https://github.com/vikekh/stepbot", Version);
             }
 
             return text;
