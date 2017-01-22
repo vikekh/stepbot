@@ -7,10 +7,25 @@
     <ProjectGuid>{9955544F-3794-47CB-8E1B-56DA2459CF2F}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Vikekh.Stepbot</RootNamespace>
-    <AssemblyName>Vikekh.Stepbot</AssemblyName>
+    <RootNamespace>Vikekh.Stepbot.Clients.Slack</RootNamespace>
+    <AssemblyName>Vikekh.Stepbot.Clients.Slack</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -70,7 +85,24 @@
       <Name>Vikekh.Stepbot.Modules.WhereIs</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>mkdir "$(SolutionDir)StepbotSlack
+"$(SolutionDir)packages\ILMerge.2.14.1208\tools\ILMerge.exe" /out:"$(SolutionDir)StepbotSlack\StepbotSlack.exe" "$(TargetDir)$(TargetName).exe" "$(TargetDir)*.dll" /target:exe /targetplatform:v4.5,C:\Windows\Microsoft.NET\Framework64\v4.0.30319 /wildcards
+copy "$(TargetDir)$(TargetName).exe.config" "$(SolutionDir)StepbotSlack\StepbotSlack.exe.config"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
