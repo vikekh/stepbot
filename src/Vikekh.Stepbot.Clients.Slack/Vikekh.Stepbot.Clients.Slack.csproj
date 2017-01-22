@@ -80,6 +80,10 @@
       <Project>{5a0a1063-63d5-4f3a-bba4-5ee468d4a892}</Project>
       <Name>Vikekh.Stepbot.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Vikekh.Stepbot.Models\Vikekh.Stepbot.Models.csproj">
+      <Project>{5bb6ea78-fe14-4290-a853-7551b13a830d}</Project>
+      <Name>Vikekh.Stepbot.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Vikekh.Stepbot.Modules.WhereIs\Vikekh.Stepbot.Modules.WhereIs.csproj">
       <Project>{a458e9cd-810c-473b-bf13-4c97f344a8f3}</Project>
       <Name>Vikekh.Stepbot.Modules.WhereIs</Name>

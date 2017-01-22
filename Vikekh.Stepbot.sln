@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{35C4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vikekh.Stepbot.Interfaces", "src\Vikekh.Stepbot.Interfaces\Vikekh.Stepbot.Interfaces.csproj", "{5A0A1063-63D5-4F3A-BBA4-5EE468D4A892}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vikekh.Stepbot.Models", "src\Vikekh.Stepbot.Models\Vikekh.Stepbot.Models.csproj", "{5BB6EA78-FE14-4290-A853-7551B13A830D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{5A0A1063-63D5-4F3A-BBA4-5EE468D4A892}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A0A1063-63D5-4F3A-BBA4-5EE468D4A892}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A0A1063-63D5-4F3A-BBA4-5EE468D4A892}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BB6EA78-FE14-4290-A853-7551B13A830D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BB6EA78-FE14-4290-A853-7551B13A830D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BB6EA78-FE14-4290-A853-7551B13A830D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BB6EA78-FE14-4290-A853-7551B13A830D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

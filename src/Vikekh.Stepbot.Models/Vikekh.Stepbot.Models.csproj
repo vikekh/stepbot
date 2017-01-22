@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5A0A1063-63D5-4F3A-BBA4-5EE468D4A892}</ProjectGuid>
+    <ProjectGuid>{5BB6EA78-FE14-4290-A853-7551B13A830D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Vikekh.Stepbot.Interfaces</RootNamespace>
-    <AssemblyName>Vikekh.Stepbot.Interfaces</AssemblyName>
+    <RootNamespace>Vikekh.Stepbot.Models</RootNamespace>
+    <AssemblyName>Vikekh.Stepbot.Models</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,15 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IClient.cs" />
-    <Compile Include="IModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Vikekh.Stepbot.Models\Vikekh.Stepbot.Models.csproj">
-      <Project>{5bb6ea78-fe14-4290-a853-7551b13a830d}</Project>
-      <Name>Vikekh.Stepbot.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
