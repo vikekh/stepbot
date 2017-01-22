@@ -12,28 +12,28 @@ namespace Vikekh.Stepbot.Modules.WhereIs
             Data = new Dictionary<string, string>();
         }
 
-        public string Exec(string message, string user)
+        public bool Exec(IClient client, string args, string channelId, string userId)
         {
-            if (!message.StartsWith("<@"))
+            if (!args.StartsWith("<@"))
             {
-                Data[user] = message;
-                return null;
+                Data[userId] = args.Trim();
+                return client.SendMessage(channelId, "OK!");
             }
 
             try
             {
-                var otherUser = message.Substring(2, 9);
+                var otherUser = args.Substring(2, 9);
 
                 if (!Data.ContainsKey(otherUser) || string.IsNullOrEmpty(Data[otherUser]))
                 {
-                    return string.Format("Jag vet inte var <@{0}> är", otherUser);
+                    return client.SendMessage(channelId, string.Format("Jag vet inte var <@{0}> är", otherUser));
                 }
 
-                return string.Format("<@{0}> är {1}", otherUser, Data[otherUser]);
+                return client.SendMessage(channelId, string.Format("<@{0}> {1}", otherUser, Data[otherUser]));
             }
             catch
             {
-                return null;
+                return false;
             }
         }
     }

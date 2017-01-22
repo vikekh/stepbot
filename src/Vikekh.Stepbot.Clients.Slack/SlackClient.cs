@@ -14,7 +14,7 @@ namespace Vikekh.Stepbot
 
         private ManualResetEventSlim ManualResetEventSlim { get; set; }
 
-        private Modules.WhereIs.WhereIsModule WhereIs { get; set; }
+        private Modules.WhereIs.WhereIsModule WhereIsModule { get; set; }
 
         public SlackClient()
         {
@@ -25,22 +25,22 @@ namespace Vikekh.Stepbot
 
         public static void Main(string[] args)
         {
-            var program = new SlackClient();
+            var client = new SlackClient();
 
-            program.Client.Connect((loginResponse) =>
+            client.Client.Connect((loginResponse) =>
             {
                 // This is called once the client has emitted the RTM start command
-                program.ManualResetEventSlim.Set();
+                client.ManualResetEventSlim.Set();
             }, () =>
             {
                 // This is called once the RTM client has connected to the end point
             });
 
-            program.Client.OnMessageReceived += (newMessage) =>
+            client.Client.OnMessageReceived += (newMessage) =>
             {
                 // Handle each message as you receive them
                 var text = newMessage.text.Trim();
-                var id = string.Format("<@{0}>", program.Client.MySelf.id);
+                var id = string.Format("<@{0}>", client.Client.MySelf.id);
 
                 if (!text.StartsWith(id))
                 {
@@ -48,43 +48,42 @@ namespace Vikekh.Stepbot
                 }
 
                 Console.WriteLine("{0}: {1}", newMessage.user, newMessage.text);
-                var textData = program.Route(text.Substring(id.Length).Trim(), newMessage.user);
-
-                if (textData != null)
-                {
-                    program.Client.SendMessage((messageReceived) => { }, newMessage.channel, textData);
-                }
+                client.Route(text.Substring(id.Length).Trim(), newMessage.channel, newMessage.user);
             };
 
-            program.ManualResetEventSlim.Wait();
+            client.ManualResetEventSlim.Wait();
             Console.ReadLine();
         }
 
-        private string Route(string route, string user)
+        private bool Route(string route, string channelId, string userId)
         {
-            string text = null;
-
             if (route.ToLower().StartsWith("hello"))
             {
-                text = "Hej på dig!";
+                return SendMessage(channelId, "Hej på dig!");
             }
 
             if (route.ToLower().StartsWith("whereis"))
             {
-                if (WhereIs == null)
+                if (WhereIsModule == null)
                 {
-                    WhereIs = new Modules.WhereIs.WhereIsModule();
+                    WhereIsModule = new Modules.WhereIs.WhereIsModule();
                 }
 
-                text = WhereIs.Exec(route.Substring("whereis".Length).Trim(), user);
+                return WhereIsModule.Exec(this, route.Substring("whereis".Length).Trim(), channelId, userId);
             }
 
             if (route.ToLower().StartsWith("version"))
             {
-                text = string.Format("Stepbot v{0} https://github.com/vikekh/stepbot", Version);
+                return SendMessage(channelId, string.Format("Stepbot v{0} https://github.com/vikekh/stepbot", Version));
             }
 
-            return text;
+            return false;
+        }
+
+        public bool SendMessage(string channelId, string message)
+        {
+            Client.SendMessage((messageReceived) => { }, channelId, message);
+            return true;
         }
     }
 }
