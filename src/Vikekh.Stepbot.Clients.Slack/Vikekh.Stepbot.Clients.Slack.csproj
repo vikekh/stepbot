@@ -51,8 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SlackClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -61,6 +61,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Vikekh.Stepbot.Interfaces\Vikekh.Stepbot.Interfaces.csproj">
+      <Project>{5a0a1063-63d5-4f3a-bba4-5ee468d4a892}</Project>
+      <Name>Vikekh.Stepbot.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Vikekh.Stepbot.Modules.WhereIs\Vikekh.Stepbot.Modules.WhereIs.csproj">
       <Project>{a458e9cd-810c-473b-bf13-4c97f344a8f3}</Project>
       <Name>Vikekh.Stepbot.Modules.WhereIs</Name>

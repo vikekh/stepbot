@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
+using Vikekh.Stepbot.Interfaces;
 
 namespace Vikekh.Stepbot.Modules.WhereIs
 {
-    public class WhereIs
+    public class WhereIsModule : IModule
     {
         private IDictionary<string, string> Data { get; set; }
 
-        public WhereIs()
+        public WhereIsModule()
         {
             Data = new Dictionary<string, string>();
         }

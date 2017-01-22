@@ -2,10 +2,11 @@
 using System;
 using System.Configuration;
 using System.Threading;
+using Vikekh.Stepbot.Interfaces;
 
 namespace Vikekh.Stepbot
 {
-    public class Program
+    public class SlackClient : IClient
     {
         private const string Version = "0.2.0";
 
@@ -13,9 +14,9 @@ namespace Vikekh.Stepbot
 
         private ManualResetEventSlim ManualResetEventSlim { get; set; }
 
-        private Modules.WhereIs.WhereIs WhereIs { get; set; }
+        private Modules.WhereIs.WhereIsModule WhereIs { get; set; }
 
-        public Program()
+        public SlackClient()
         {
             var botAuthToken = ConfigurationManager.AppSettings["BotAuthToken"];
             ManualResetEventSlim = new ManualResetEventSlim(false);
@@ -24,7 +25,7 @@ namespace Vikekh.Stepbot
 
         public static void Main(string[] args)
         {
-            var program = new Program();
+            var program = new SlackClient();
 
             program.Client.Connect((loginResponse) =>
             {
@@ -72,7 +73,7 @@ namespace Vikekh.Stepbot
             {
                 if (WhereIs == null)
                 {
-                    WhereIs = new Modules.WhereIs.WhereIs();
+                    WhereIs = new Modules.WhereIs.WhereIsModule();
                 }
 
                 text = WhereIs.Exec(route.Substring("whereis".Length).Trim(), user);
