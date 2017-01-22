@@ -82,7 +82,7 @@ namespace Vikekh.Stepbot
 
             if (route.ToLower().StartsWith("version"))
             {
-                return SendMessage(channelId, string.Format("Stepbot v{0} https://github.com/vikekh/stepbot", Version));
+                return SendMessage(channelId, string.Format("Stepbot Slack v{0} https://github.com/vikekh/stepbot", Version));
             }
 
             return false;
