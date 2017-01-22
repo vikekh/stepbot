@@ -1,6 +1,7 @@
 ﻿using SlackAPI;
 using System;
 using System.Configuration;
+using System.Reflection;
 using System.Threading;
 using Vikekh.Stepbot.Interfaces;
 
@@ -8,11 +9,18 @@ namespace Vikekh.Stepbot
 {
     public class SlackClient : IClient
     {
-        private const string Version = "0.2.0";
-
         private SlackSocketClient Client { get; set; }
 
         private ManualResetEventSlim ManualResetEventSlim { get; set; }
+
+        private string Version
+        {
+            get
+            {
+                var version = Assembly.GetExecutingAssembly().GetName().Version;
+                return string.Format("{0}.{1}.{2}", version.Major, version.Minor, version.Build);
+            }
+        }
 
         private Modules.WhereIs.WhereIsModule WhereIsModule { get; set; }
 
