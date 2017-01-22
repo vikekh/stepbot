@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vikekh.Stepbot.Clients.Slac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vikekh.Stepbot.Modules.WhereIs", "src\Vikekh.Stepbot.Modules.WhereIs\Vikekh.Stepbot.Modules.WhereIs.csproj", "{A458E9CD-810C-473B-BF13-4C97F344A8F3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{0E08C1F3-0591-4431-9B00-6FD6357729D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{35C45D49-80D9-4E98-B96A-BAAF19C2E30A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9955544F-3794-47CB-8E1B-56DA2459CF2F} = {0E08C1F3-0591-4431-9B00-6FD6357729D4}
+		{A458E9CD-810C-473B-BF13-4C97F344A8F3} = {35C45D49-80D9-4E98-B96A-BAAF19C2E30A}
 	EndGlobalSection
 EndGlobal
