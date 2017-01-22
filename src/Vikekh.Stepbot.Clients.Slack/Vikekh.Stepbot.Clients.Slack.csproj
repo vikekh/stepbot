@@ -76,6 +76,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Vikekh.Stepbot.Clients.Base\Vikekh.Stepbot.Clients.Base.csproj">
+      <Project>{3A0D1BBC-17C3-4641-B2B9-21769DD25A68}</Project>
+      <Name>Vikekh.Stepbot.Clients.Base</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Vikekh.Stepbot.Interfaces\Vikekh.Stepbot.Interfaces.csproj">
       <Project>{5a0a1063-63d5-4f3a-bba4-5ee468d4a892}</Project>
       <Name>Vikekh.Stepbot.Interfaces</Name>

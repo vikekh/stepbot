@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vikekh.Stepbot.Interfaces",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vikekh.Stepbot.Models", "src\Vikekh.Stepbot.Models\Vikekh.Stepbot.Models.csproj", "{5BB6EA78-FE14-4290-A853-7551B13A830D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vikekh.Stepbot.Clients.Base", "src\Vikekh.Stepbot.Clients.Base\Vikekh.Stepbot.Clients.Base.csproj", "{3A0D1BBC-17C3-4641-B2B9-21769DD25A68}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{5BB6EA78-FE14-4290-A853-7551B13A830D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BB6EA78-FE14-4290-A853-7551B13A830D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BB6EA78-FE14-4290-A853-7551B13A830D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A0D1BBC-17C3-4641-B2B9-21769DD25A68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A0D1BBC-17C3-4641-B2B9-21769DD25A68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A0D1BBC-17C3-4641-B2B9-21769DD25A68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A0D1BBC-17C3-4641-B2B9-21769DD25A68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,5 +50,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{9955544F-3794-47CB-8E1B-56DA2459CF2F} = {0E08C1F3-0591-4431-9B00-6FD6357729D4}
 		{A458E9CD-810C-473B-BF13-4C97F344A8F3} = {35C45D49-80D9-4E98-B96A-BAAF19C2E30A}
+		{3A0D1BBC-17C3-4641-B2B9-21769DD25A68} = {0E08C1F3-0591-4431-9B00-6FD6357729D4}
 	EndGlobalSection
 EndGlobal

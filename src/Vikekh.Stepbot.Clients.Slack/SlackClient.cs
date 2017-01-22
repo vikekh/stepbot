@@ -3,11 +3,12 @@ using System;
 using System.Configuration;
 using System.Reflection;
 using System.Threading;
+using Vikekh.Stepbot.Clients.Base;
 using Vikekh.Stepbot.Interfaces;
 
 namespace Vikekh.Stepbot
 {
-    public class SlackClient : IClient
+    public class SlackClient : BaseClient, IClient
     {
         private SlackSocketClient Client { get; set; }
 
@@ -88,7 +89,7 @@ namespace Vikekh.Stepbot
             return false;
         }
 
-        public bool SendMessage(string channelId, string message)
+        public override bool SendMessage(string channelId, string message)
         {
             Client.SendMessage((messageReceived) => { }, channelId, message);
             return true;
