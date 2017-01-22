@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vikekh.Stepbot", "Vikekh.Stepbot\Vikekh.Stepbot.csproj", "{9955544F-3794-47CB-8E1B-56DA2459CF2F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vikekh.Stepbot.Clients.Slack", "src\Vikekh.Stepbot.Clients.Slack\Vikekh.Stepbot.Clients.Slack.csproj", "{9955544F-3794-47CB-8E1B-56DA2459CF2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vikekh.Stepbot.Modules.WhereIs", "Vikekh.Stepbot.Modules.WhereIs\Vikekh.Stepbot.Modules.WhereIs.csproj", "{A458E9CD-810C-473B-BF13-4C97F344A8F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vikekh.Stepbot.Modules.WhereIs", "src\Vikekh.Stepbot.Modules.WhereIs\Vikekh.Stepbot.Modules.WhereIs.csproj", "{A458E9CD-810C-473B-BF13-4C97F344A8F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
