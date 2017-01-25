@@ -1,4 +1,5 @@
-﻿using SlackAPI;
+﻿using Newtonsoft.Json;
+using SlackAPI;
 using System;
 using System.Configuration;
 using System.Reflection;
@@ -6,11 +7,13 @@ using System.Threading;
 using Vikekh.Stepbot.Clients.Base;
 using Vikekh.Stepbot.Interfaces;
 
-namespace Vikekh.Stepbot
+namespace Vikekh.Stepbot.Clients.Slack
 {
     public class SlackClient : BaseClient, IClient
     {
         private SlackSocketClient Client { get; set; }
+
+        private Config Config { get; set; }
 
         private ManualResetEventSlim ManualResetEventSlim { get; set; }
 
@@ -27,9 +30,9 @@ namespace Vikekh.Stepbot
 
         public SlackClient()
         {
-            var botAuthToken = ConfigurationManager.AppSettings["BotAuthToken"];
+            Config = JsonConvert.DeserializeObject<Config>(System.IO.File.ReadAllText("config.json"));
             ManualResetEventSlim = new ManualResetEventSlim(false);
-            Client = new SlackSocketClient(botAuthToken);
+            Client = new SlackSocketClient(Config.Token);
         }
 
         public static void Main(string[] args)
