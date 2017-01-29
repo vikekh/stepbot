@@ -44,6 +44,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Vikekh.Stepbot.Common\Vikekh.Stepbot.Common.csproj">
+      <Project>{c66e9a7d-0d39-4b6a-9394-28094b63086d}</Project>
+      <Name>Vikekh.Stepbot.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Vikekh.Stepbot.Interfaces\Vikekh.Stepbot.Interfaces.csproj">
       <Project>{5a0a1063-63d5-4f3a-bba4-5ee468d4a892}</Project>
       <Name>Vikekh.Stepbot.Interfaces</Name>

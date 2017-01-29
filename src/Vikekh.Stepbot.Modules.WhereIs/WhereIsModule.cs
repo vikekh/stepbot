@@ -12,7 +12,7 @@ namespace Vikekh.Stepbot.Modules.WhereIs
             Data = new Dictionary<string, string>();
         }
 
-        public bool Exec(IClient client, string args, string channelId, string userId)
+        public bool Exec(IClient<IConfig> client, string args, string channelId, string userId)
         {
             if (!args.StartsWith("<@"))
             {
