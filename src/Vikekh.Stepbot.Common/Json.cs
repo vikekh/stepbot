@@ -19,5 +19,11 @@ namespace Vikekh.Stepbot.Common
             var value = File.ReadAllText(path);
             return JsonConvert.DeserializeObject<T>(value, GetSettings());
         }
+
+        public static void Write(string path, object value)
+        {
+            var contents = JsonConvert.SerializeObject(value, Formatting.Indented, GetSettings());
+            File.WriteAllText(path, contents);
+        }
     }
 }
