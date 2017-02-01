@@ -12,17 +12,17 @@ namespace Vikekh.Stepbot.Modules.WhereIs
             Data = new Dictionary<string, string>();
         }
 
-        public bool Exec(IClient<IConfig> client, string args, string channelId, string userId)
+        public bool Exec(IClient client, string[] args, string channelId, string userId)
         {
-            if (!args.StartsWith("<@"))
+            if (!args[0].StartsWith("<@"))
             {
-                Data[userId] = args.Trim();
+                Data[userId] = args[0];
                 return client.SendMessage(channelId, "OK!");
             }
 
             try
             {
-                var otherUser = args.Substring(2, 9);
+                var otherUser = args[0].Substring(2, 9);
 
                 if (!Data.ContainsKey(otherUser) || string.IsNullOrEmpty(Data[otherUser]))
                 {

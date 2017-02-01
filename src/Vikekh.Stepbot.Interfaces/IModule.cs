@@ -2,6 +2,6 @@
 {
     public interface IModule
     {
-        bool Exec(IClient<IConfig> client, string args, string channelId, string user);
+        bool Exec(IClient client, string[] args, string channelId, string user);
     }
 }

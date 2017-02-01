@@ -12,10 +12,11 @@ namespace Vikekh.Stepbot.Common
             return string.Format("{0}.{1}.{2}", version.Major, version.Minor, version.Build);
         }
 
-        public static IEnumerable<string> ParseMessage(string message)
+        public static string[] ParseMessage(string message)
         {
             return message.Split(' ')
-                .Where(s => !string.IsNullOrEmpty(s));
+                .Where(s => !string.IsNullOrEmpty(s))
+                .ToArray();
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿namespace Vikekh.Stepbot.Interfaces
 {
-    public interface IClient<IConfig>
+    public interface IClient
     {
-        IConfig Config { get; set; }
+        //bool IsRecipient();
 
         bool SendMessage(string channelId, string message);
     }
