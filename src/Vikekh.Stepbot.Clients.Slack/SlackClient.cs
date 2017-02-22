@@ -1,8 +1,6 @@
 ﻿using SlackAPI;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Threading;
 using Vikekh.Stepbot.Clients.Base;
 using Vikekh.Stepbot.Common;
@@ -16,59 +14,37 @@ namespace Vikekh.Stepbot.Clients.Slack
 
         private ManualResetEventSlim ManualResetEventSlim { get; set; }
 
-        private IDictionary<string, IModule> Modules { get; set; }
-
-        public SlackClient() : base()
+        public SlackClient(Action<string> Log = null) : base()
         {
-            ManualResetEventSlim = new ManualResetEventSlim(false);
+            //var manualResetEventSlim = new ManualResetEventSlim(false);
             Client = new SlackSocketClient(Config.Token);
-        }
+            Log("Created client.");
 
-        private IModule GetModule(string name)
-        {
-            if (Modules == null) Modules = new Dictionary<string, IModule>();
-
-            if (Modules.ContainsKey(name) && Modules[name] != null)
+            Client.Connect((loginResponse) =>
             {
-                return Modules[name];
-            }
-
-            IModule module = null;
-
-            if (name.Equals("WhereIs"))
+                Log("Connected.");
+                // This is called once the client has emitted the RTM start command
+                //manualResetEventSlim.Set();
+            }, () =>
             {
-                module = new Modules.WhereIs.WhereIsModule();
-            }
+                Log("Socket connected.");
+                // This is called once the RTM client has connected to the end point
+            });
 
-            if (module != null)
+            Client.OnMessageReceived += (newMessage) =>
             {
-                Modules[name] = module;
-            }
+                Log("Message recieved.");
+                // Handle each message as you receive them
+                Route(Utils.ParseMessage(newMessage.text), newMessage.channel, newMessage.user);
+            };
 
-            return module;
+            //manualResetEventSlim.Wait();
         }
 
         public static void Main(string[] args)
         {
-            var client = new SlackClient();
-
-            client.Client.Connect((loginResponse) =>
-            {
-                // This is called once the client has emitted the RTM start command
-                client.ManualResetEventSlim.Set();
-            }, () =>
-            {
-                // This is called once the RTM client has connected to the end point
-            });
-
-            client.Client.OnMessageReceived += (newMessage) =>
-            {
-                // Handle each message as you receive them
-                Console.WriteLine("{0}: {1}", newMessage.user, newMessage.text);
-                client.Route(Utils.ParseMessage(newMessage.text), newMessage.channel, newMessage.user);
-            };
-
-            client.ManualResetEventSlim.Wait();
+            //var manualResetEventSlim = new ManualResetEventSlim(false);
+            new SlackClient((s) => { Console.WriteLine(s); });
             Console.ReadLine();
         }
 

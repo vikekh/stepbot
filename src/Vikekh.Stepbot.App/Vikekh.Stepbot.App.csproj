@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3A0D1BBC-17C3-4641-B2B9-21769DD25A68}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{E44F35B1-3A30-4836-94AB-18193E839CD2}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Vikekh.Stepbot.Clients.Base</RootNamespace>
-    <AssemblyName>Vikekh.Stepbot.Clients.Base</AssemblyName>
+    <RootNamespace>Vikekh.Stepbot.App</RootNamespace>
+    <AssemblyName>Vikekh.Stepbot.App</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -40,21 +42,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseClient.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Vikekh.Stepbot.Common\Vikekh.Stepbot.Common.csproj">
-      <Project>{c66e9a7d-0d39-4b6a-9394-28094b63086d}</Project>
-      <Name>Vikekh.Stepbot.Common</Name>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vikekh.Stepbot.Clients.Base\Vikekh.Stepbot.Clients.Base.csproj">
+      <Project>{3a0d1bbc-17c3-4641-b2b9-21769dd25a68}</Project>
+      <Name>Vikekh.Stepbot.Clients.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vikekh.Stepbot.Clients.Slack\Vikekh.Stepbot.Clients.Slack.csproj">
+      <Project>{9955544f-3794-47cb-8e1b-56da2459cf2f}</Project>
+      <Name>Vikekh.Stepbot.Clients.Slack</Name>
     </ProjectReference>
     <ProjectReference Include="..\Vikekh.Stepbot.Interfaces\Vikekh.Stepbot.Interfaces.csproj">
       <Project>{5a0a1063-63d5-4f3a-bba4-5ee468d4a892}</Project>
       <Name>Vikekh.Stepbot.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Vikekh.Stepbot.Modules.WhereIs\Vikekh.Stepbot.Modules.WhereIs.csproj">
-      <Project>{a458e9cd-810c-473b-bf13-4c97f344a8f3}</Project>
-      <Name>Vikekh.Stepbot.Modules.WhereIs</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
